@@ -1,0 +1,26 @@
+// =====================================================
+// _mixins.scss  -  Potongan style yang dipakai berulang
+// (diawali "smk-" supaya tidak bentrok dengan mixin Bootstrap)
+// =====================================================
+
+@mixin smk-transition($props: all, $time: .25s) {
+  transition: $props $time ease;
+}
+
+// Efek naik sedikit saat disentuh kursor
+@mixin smk-lift($distance: -4px) {
+  @include smk-transition(transform);
+  &:hover {
+    transform: translateY($distance);
+  }
+}
+
+// Garis emas pendek (dipakai di bawah judul section)
+@mixin smk-gold-bar($width: 56px, $height: 4px) {
+  content: "";
+  display: block;
+  width: $width;
+  height: $height;
+  background: $gold-500;
+  border-radius: 99px;
+}

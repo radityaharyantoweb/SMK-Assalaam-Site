@@ -1,0 +1,43 @@
+// =====================================================
+// _variables.scss  -  Identitas visual SMK ASSALAAM
+// File ini dibaca Bootstrap SEBELUM Bootstrap dibangun,
+// jadi nilai di sini mengubah warna/font bawaan Bootstrap.
+// =====================================================
+
+// ---------- Palet: hijau & emas ----------
+$green-900: #053d1f;   // hijau paling gelap (footer)
+$green-700: #075a2e;   // hijau gelap
+$green-600: #0b7a3e;   // hijau utama
+$gold-500:  #fbc02d;   // emas/kuning aksen
+$gold-700:  #8a6400;   // emas gelap, untuk TEKS di latar putih (kontras aman)
+$paper:     #f3f7f2;   // latar terang kehijauan
+
+// ---------- Warna tema Bootstrap ----------
+$primary:   $green-600;
+$secondary: $gold-500;
+$success:   #198754;
+$warning:   $gold-500;
+$danger:    #dc3545;
+$dark:      $green-700;
+$light:     $paper;
+
+$body-color: #1f2a24;
+$body-bg:    #ffffff;
+$link-color: $green-600;
+
+// ---------- Font ----------
+// Judul : Bricolage Grotesque  (tegas, berkarakter)
+// Isi   : Plus Jakarta Sans    (bersih, enak dibaca)
+$font-heading: "Bricolage Grotesque", "Segoe UI", sans-serif;
+$font-body:    "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif;
+
+$font-family-sans-serif: $font-body;
+$headings-font-family:   $font-heading;
+$headings-font-weight:   700;
+$headings-line-height:   1.15;
+
+// ---------- Bentuk ----------
+$border-radius:    .6rem;
+$border-radius-lg: .9rem;
+$btn-font-weight:  600;
+$btn-padding-x:    1.25rem;

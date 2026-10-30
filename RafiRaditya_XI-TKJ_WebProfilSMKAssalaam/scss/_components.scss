@@ -1,0 +1,329 @@
+// =====================================================
+// _components.scss  -  Style khusus website SMK ASSALAAM
+// =====================================================
+
+html { scroll-behavior: smooth; }
+
+body {
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  letter-spacing: -.015em;
+}
+
+// Fokus keyboard yang jelas
+:focus-visible {
+  outline: 3px solid $gold-500;
+  outline-offset: 2px;
+}
+
+// Tautan "lompat ke konten" (aksesibilitas)
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  z-index: 2000;
+  background: $gold-500;
+  color: $green-900;
+  padding: .5rem 1rem;
+  font-weight: 600;
+  &:focus { left: 0; }
+}
+
+// Penanda data yang MASIH HARUS DIISI (hapus kelasnya kalau sudah diisi)
+.isi-data {
+  background: rgba($gold-500, .28);
+  border-bottom: 2px dashed $gold-700;
+  padding: 0 .3rem;
+}
+
+.text-gold-deep { color: $gold-700; }
+
+// ---------------- NAVBAR ----------------
+.navbar {
+  --bs-navbar-color: rgba(255, 255, 255, .86);
+  --bs-navbar-hover-color: #{$gold-500};
+  --bs-navbar-active-color: #{$gold-500};
+  border-bottom: 4px solid $gold-500;
+
+  .navbar-brand {
+    font-family: $font-heading;
+    font-weight: 800;
+    letter-spacing: .01em;
+  }
+
+  .brand-logo {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #fff;                  // cincin putih tipis, bukan emas
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .35); // bayangan supaya logo "timbul"
+}
+
+  .nav-link {
+    position: relative;
+    font-weight: 500;
+    @include smk-transition(color);
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: .5rem;
+      bottom: 2px;
+      width: 0;
+      height: 2px;
+      background: $gold-500;
+      @include smk-transition(width);
+    }
+    &:hover::after,
+    &.active::after {
+      width: calc(100% - 1rem);
+    }
+  }
+}
+
+// ---------------- HERO ----------------
+.hero-img {
+  height: clamp(380px, 70vh, 640px);
+  object-fit: cover;
+}
+
+#heroCarousel {
+  .carousel-item::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(90deg, rgba($green-900, .88) 0%, rgba($green-900, .45) 55%, rgba($green-900, .15) 100%);
+  }
+
+  .carousel-caption {
+    z-index: 2;
+    text-align: left;
+    left: 6%;
+    right: 6%;
+    bottom: auto;
+    top: 50%;
+    transform: translateY(-50%);
+    max-width: 640px;
+
+    h1, h2 {
+      font-weight: 800;
+      font-size: clamp(1.9rem, 5vw, 3.2rem);
+      text-wrap: balance;
+    }
+    p {
+      font-size: clamp(.95rem, 2vw, 1.15rem);
+      max-width: 52ch;
+    }
+  }
+
+  @include media-breakpoint-up(xl) {
+    .carousel-caption { left: calc((100% - 1140px) / 2 + 12px); }
+  }
+}
+
+// ---------------- JUDUL SECTION ----------------
+.section-head {
+  margin-bottom: 2rem;
+
+  h2 { margin-bottom: .5rem; }
+  h2::after { @include smk-gold-bar; margin-top: .6rem; }
+  p { margin-bottom: 0; color: var(--bs-secondary-color); max-width: 60ch; }
+}
+
+.bg-paper { background: $paper; }
+
+// ---------------- HEADER HALAMAN DALAM ----------------
+// Pola titik = simpul jaringan
+.page-header {
+  position: relative;
+  color: #fff;
+  padding: 4rem 0 3.25rem;
+  background:
+    radial-gradient(rgba($gold-500, .22) 1.5px, transparent 1.5px) 0 0 / 24px 24px,
+    linear-gradient(135deg, $green-700, $green-600);
+
+  h1 { font-weight: 800; font-size: clamp(2rem, 5vw, 3rem); margin-bottom: .5rem; }
+  p  { margin: 0; max-width: 56ch; color: rgba(255, 255, 255, .9); }
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 4px;
+    background: $gold-500;
+  }
+}
+
+// ---------------- TOMBOL ----------------
+.btn-primary {
+  @include smk-transition(all, .3s);
+  box-shadow: 0 0 10px rgba($green-600, .3);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 16px rgba($green-600, .55);
+  }
+}
+
+.btn-warning {
+  @include smk-transition(all, .3s);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px rgba($gold-500, .7);
+  }
+}
+
+// ---------------- KARTU ----------------
+.card-smk {
+  border: 0;
+  overflow: hidden;
+  box-shadow: 0 .25rem 1rem rgba($green-900, .09);
+}
+
+.kegiatan-img {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+}
+
+.prestasi-card {
+  border-top: 4px solid $gold-500;
+  @include smk-lift(-6px);
+}
+
+.prestasi-img {
+  width: 100%;
+  height: 340px;
+  object-fit: contain;      // seluruh gambar tampil, tidak dipotong
+  background: $green-900;   // sisa ruang di kiri/kanan berwarna hijau tua
+}
+
+// Instagram embed supaya tidak melebihi layar HP
+.instagram-media {
+  min-width: 0 !important;
+  max-width: 100% !important;
+}
+
+// ---------------- HALAMAN TENTANG ----------------
+.kepsek-foto {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: $border-radius-lg;
+  box-shadow: 0 .5rem 1.25rem rgba($green-900, .18);
+}
+
+.sambutan {
+  border-left: 4px solid $gold-500;
+  padding-left: 1.25rem;
+}
+
+.fasilitas-img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+}
+
+// ---------------- HALAMAN JURUSAN ----------------
+.kompetensi-item {
+  height: 100%;
+  background: #fff;
+  border-radius: $border-radius-lg;
+  padding: 1.5rem;
+  border-left: 5px solid $green-600;
+  box-shadow: 0 .25rem 1rem rgba($green-900, .08);
+
+  h3 { font-size: 1.15rem; }
+  p  { margin-bottom: 0; color: var(--bs-secondary-color); }
+}
+
+.chip {
+  display: inline-block;
+  background: #fff;
+  border: 1px solid rgba($green-600, .35);
+  color: $green-700;
+  font-weight: 600;
+  font-size: .9rem;
+  padding: .4rem .9rem;
+  border-radius: 99px;
+  margin: 0 .35rem .6rem 0;
+}
+
+.galeri-img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: $border-radius-lg;
+}
+
+.logo-card {
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: #fff;
+  border-radius: $border-radius-lg;
+  box-shadow: 0 .25rem 1rem rgba($green-900, .08);
+
+  img {
+    max-width: 100%;
+    max-height: 70px;
+    object-fit: contain;
+  }
+}
+
+// ---------------- HALAMAN KONTAK ----------------
+.kontak-card {
+  height: 100%;
+  background: #fff;
+  border-radius: $border-radius-lg;
+  padding: 1.5rem;
+  border-top: 4px solid $gold-500;
+  box-shadow: 0 .25rem 1rem rgba($green-900, .08);
+
+  h3 { font-size: 1.1rem; }
+  p  { margin-bottom: .25rem; }
+}
+
+.map-frame {
+  display: block;
+  width: 100%;
+  height: 380px;
+  border: 0;
+  border-radius: $border-radius-lg;
+  box-shadow: 0 .5rem 1.25rem rgba($green-900, .15);
+}
+
+// ---------------- FOOTER ----------------
+.site-footer {
+  background: $green-900;
+  border-top: 4px solid $gold-500;
+  color: #fff;
+
+  h5 { color: $gold-500; }
+}
+
+.footer-link {
+  display: inline-block;
+  color: rgba(255, 255, 255, .82);
+  text-decoration: none;
+  margin-bottom: 8px;
+  @include smk-transition(color);
+
+  &:hover { color: $gold-500; }
+}
+
+// Hormati pengguna yang mematikan animasi
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}

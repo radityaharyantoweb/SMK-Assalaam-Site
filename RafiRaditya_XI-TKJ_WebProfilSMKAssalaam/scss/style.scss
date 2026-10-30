@@ -1,0 +1,16 @@
+// =====================================================
+// style.scss  -  File utama. Compile file INI saja.
+//   sass scss/style.scss css/style.css
+//
+// URUTAN PENTING (jangan dibalik):
+//   1. fungsi Bootstrap
+//   2. variabel kita  (supaya Bootstrap memakai warna/font kita)
+//   3. Bootstrap
+//   4. mixin + style kita (paling akhir, supaya bisa menimpa)
+// =====================================================
+
+@import "../bootstrap/scss/functions";
+@import "variables";
+@import "../bootstrap/scss/bootstrap";
+@import "mixins";
+@import "components";
